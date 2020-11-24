@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+
+  <head>
+    <meta charset="utf-8">
+    <title>Astros</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+    <div class="container-fluid">
+        <h2>Astro Space</h2>
+      </div>
+
+    <div id="app">
+      <table class="table table-dark table-hover  table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Craft</th>
+        </tr>
+        <tr v-for="person of people">
+          <td>{{ person.name }}</td>
+          <td>{{ person.craft }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
+
+  <script>
+    const url = 'http://api.open-notify.org/astros.json';
+
+    new Vue({
+      el: '#app',
+      data () {
+        return { people: null }
+      },
+      created () {
+        axios
+          .get(url)
+          .then(response => (this.people = response.data.people))
+      }
+    })
+
+
+  </script>
+  </body>
+</html>
